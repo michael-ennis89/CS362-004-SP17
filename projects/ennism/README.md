@@ -1,2 +1,2 @@
 Michael Ennis
-This is my assignmnet-2 submission!
+This is my assignment-2 submission!
