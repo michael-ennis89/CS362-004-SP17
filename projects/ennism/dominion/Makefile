@@ -53,6 +53,55 @@ unittest3: unittest3.c dominion.o rngs.o
 unittest4: unittest4.c dominion.o rngs.o
 	gcc -o unittest4 -g unittest4.c dominion.o rngs.o $(CFLAGS)
 
+randomtestcard1: randomtestcard1.c dominion.o rngs.o
+	gcc -o randomtestcard1 -g randomtestcard1.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard2: randomtestcard2.c dominion.o rngs.o
+	gcc -o randomtestcard2 -g randomtestcard2.c dominion.o rngs.o $(CFLAGS)
+
+randomtestadventurer: randomtestadventurer.c dominion.o rngs.o
+	gcc -o randomtestadventurer -g randomtestadventurer.c dominion.o rngs.o $(CFLAGS)
+
+randomtestcard1.out:
+	make randomtestcard1
+	./randomtestcard1 >> randomtestcard1.out
+	gcov -b -f dominion.c >> randomtestcard1.out
+
+randomtestcard2.out:
+	make randomtestcard2
+	./randomtestcard2 >> randomtestcard2.out
+	gcov -b -f dominion.c >> randomtestcard2.out
+
+randomtestadventurer.out:
+	make randomtestadventurer
+	./randomtestadventurer >> randomtestadventurer.out
+	gcov -b -f dominion.c >> randomtestadventurer.out
+
+randomtests.out:
+	make randomtestcard1.out
+	make randomtestcard2.out
+	make randomtestadventurer.out
+
+cardtest1.out:
+	make cardtest1
+	./cardtest1 >> cardtest1.out
+	gcov -b -f dominion.c >> cardtest1.out
+
+cardtest2.out:
+	make cardtest3
+	./cardtest3 >> cardtest2.out
+	gcov -b -f dominion.c >> cardtest2.out
+
+cardtestadventurer.out:
+	make cardtest2
+	./cardtest2 >> cardtestadventurer.out
+	gcov -b -f dominion.c >> cardtestadventurer.out
+
+cardtests.out:
+	make cardtest1.out
+	make cardtest2.out
+	make cardtestadventurer.out
+
 unittestresults.out:
 	make cardtest1
 	./cardtest1 >> unittestresults.out
@@ -92,4 +141,4 @@ player: player.c interface.o
 all: playdom player testDrawCard testBuyCard badTestDrawCard
 
 clean:
-	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe  *.gcov *.gcda *.gcno *.so cardtest1 cardtest2 cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4 unittestresults.out
+	rm -f *.o playdom.exe playdom test.exe test player player.exe testInit testInit.exe  *.gcov *.gcda *.gcno *.so cardtest1 cardtest1.out cardtest2 cardtest2.out cardtestadventurer.out cardtest3 cardtest4 unittest1 unittest2 unittest3 unittest4 unittestresults.out randomtestcard1 randomtestcard1.out cardtest1.out randomtestcard2 randomtestcard2.out randomtestadventurer randomtestadventurer.out
