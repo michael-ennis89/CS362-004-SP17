@@ -1,0 +1,72 @@
+Michael Ennis
+May 28, 2017
+Assignment 5
+BugsInTeamMateCode.txt
+
+
+Bug: Smithy Card 
+Expected Outcome: 
+	-Current Player starts with 5 cards.
+	-Current player draws 3 cards. 
+	-Current player discards 1 card.
+	-Current player ends turn with 7 cards. 
+Cause:
+	There appears to be two bugs, 1 directly in the code of the Smithy card and one
+in the draw card function. 
+	The bug inside the Smithy Card of Travis' code is on line 12 of dominion.c. This
+is the function that should run three times to draw 3 cards from the deck; however
+for (i = 0; i < 1; i++) will terminate after 1 loop thus only drawing 1 card and causing
+the error 65.7% of the time. Chaning the 1 to a 3 fixes this bug. in the 65.7% of the
+time that the bug occured because of this line of code.
+	The second bug seems to deal with the draw card function that is occuring 34.3% of
+time.
+
+Symptoms:
+	Random test generator on the smithy card ran 1000 tests of which all 1000 failed.
+657/1000 (65.7%) Player has 5 cards in hand instead of 7 after card is played.
+343/1000 (34.3%) Player has -1 cards in hand instead of 7 after card is played.
+
+Priority & Severity:
+	Both of these bugs are high priority because they efect the gameplay of the dominion
+card game; however, the bug directly inside the code of the Smithy Card only effects
+the game when the card is played. If the card isn't ever played it wont effect the game.
+Although it is a high priority, the severity of it is lessened. 
+	The second bug that appears to be coming inside the drawCard function is a much
+higher priority bug because the function is called throughout the dominion game and
+greatly effects the outcome of the game. Because of this it would be a very high priority
+and severity if not fixed. 
+
+Bug: Great Hall Card
+Expected Outcome:
+	-Current Player recieves +1 card
+	-Current Player recieves +1 action
+	-Current Player discards 1 card.
+	-Current Player ends hand with 4 cards. 
+	
+Cause:
+	There appears to be two bugs, 1 directly in the code of the Great Hall card and one
+in the draw card function again.
+	The bug instide the Great Hall card of Travis' code is on line 71 of dominion.c. This
+line should have a increment of actions "++" but instead it has a decrement "--" of actions.
+This it causes a difference of 2. All of the actions should start with 1 and end with two
+;however on normal error cases not effected by drawCard it would start with 1 and end with 0.
+	The second bug seems to deal with the draw card function that is occuring 30.7% of the
+time. 
+
+Symptoms: 
+	Random test generator on the great hall card ran 1000 tests of which all 1000 failed;
+however, the bug is a little more in depth that straight pass and fail.
+Overall
+1000/1000 (100%) Player has the incorrect number of actions
+307/1000  (307%) Player has the incorrect number of cards
+
+The important thing to note is that there are 693 tests where it is only the actions which
+are bugged meaning the card count is correct in those 693 tests. However, in the 307 tests
+where there is -1 cards instead of 0 there is also an error with the amount of actions at 
+1 action neeeded vs -1 actions have instad of 2 actions needed vs 0 actions have.
+
+Priority and Severity:
+	Like the bug in the smithy card, both of these bugs are high priority; however, similar
+again, it only occurs when the great hall card is played where as the drawCard function
+again shows effects the program every time it is called. Thus the severity of the drawCard
+function is much Higher. 

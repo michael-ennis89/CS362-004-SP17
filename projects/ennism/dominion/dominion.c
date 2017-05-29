@@ -651,7 +651,7 @@ int smithy_Card(int handPos, int currentPlayer, struct gameState *state){
 	//+3 Cards
 	int i;
 
-    for (i = 0; i < 3; i++)
+    for (i = 0; i < 3; i++) //Changed i from 1 to 0 to fix bug
 	{
 	  drawCard(currentPlayer, state);
 	}
@@ -670,7 +670,7 @@ int adventurer_Card(int drawntreasure, int currentPlayer, int cardDrawn, int tem
 	}
 	drawCard(currentPlayer, state);
 	cardDrawn = state->hand[currentPlayer][state->handCount[currentPlayer]-1];//top card of hand is most recently drawn card.
-	if (cardDrawn == copper || cardDrawn == gold || cardDrawn == silver)
+	if (cardDrawn == copper)
 	  drawntreasure++;
 	else{
 	  temphand[z]=cardDrawn;
